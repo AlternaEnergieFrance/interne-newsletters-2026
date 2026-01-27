@@ -1,0 +1,456 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Calendrier Newsletters Internes 2026</title>
+
+  <style>
+    :root{
+      --bg-a:#3b0a15;
+      --bg-b:#6a1026;
+      --brand-a:#7a1430;
+      --brand-b:#4a0d1c;
+
+      --ink:#0b0f0c;
+      --muted:#374151;
+      --card:#ffffff;
+      --line:#ead6cf;
+
+      --peach-1:#fde7dc;
+      --peach-2:#fcd6c4;
+      --peach-3:#fbc3a8;
+      --peach-4:#feefe8;
+
+      --okbg:#dcfce7; --ok:#166534; --okbd:#86efac;
+      --warnbg:#ffedd5; --warn:#9a3412; --warnbd:#fdba74;
+      --futurebg:#e0e7ff; --future:#3730a3; --futurebd:#a5b4fc;
+    }
+
+    *{margin:0;padding:0;box-sizing:border-box}
+
+    body{
+      font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      padding:20px;
+      min-height:100vh;
+      background:
+        radial-gradient(900px 520px at 15% 10%, rgba(251,191,36,.14), transparent 60%),
+        radial-gradient(900px 520px at 85% 18%, rgba(255,125,160,.14), transparent 60%),
+        linear-gradient(135deg,var(--bg-a),var(--bg-b));
+      color:var(--ink);
+    }
+
+    .container{
+      max-width:1600px;
+      margin:0 auto;
+      background:var(--card);
+      border-radius:16px;
+      overflow:hidden;
+      box-shadow:0 20px 60px rgba(0,0,0,.35);
+      border:1px solid rgba(255,255,255,0.08);
+    }
+
+    .header{
+      background: linear-gradient(135deg, rgba(122,20,48,0.98) 0%, rgba(74,13,28,0.98) 100%);
+      color:#fff;
+      padding:28px 30px;
+      display:flex;
+      align-items:center;
+      gap:18px;
+      position:relative;
+      overflow:hidden;
+    }
+
+    .header::before{
+      content:'';
+      position:absolute;
+      top:0; right:0;
+      width:340px; height:340px;
+      background: radial-gradient(circle, rgba(251,191,36,0.22) 0%, rgba(251,191,36,0) 70%);
+      border-radius:50%;
+      transform: translate(45%,-45%);
+    }
+
+    .vf-logo{
+      height:72px;
+      width:auto;
+      object-fit:contain;
+      flex-shrink:0;
+      position:relative;
+      z-index:1;
+      filter: drop-shadow(0 4px 10px rgba(0,0,0,.25));
+    }
+
+    .header-text{position:relative;z-index:1}
+    .header h1{
+      font-size:30px;
+      line-height:1.1;
+      margin-bottom:6px;
+    }
+    .header p{
+      font-size:14px;
+      opacity:.95;
+      font-weight:600;
+    }
+
+    .controls{
+      padding:18px 30px;
+      background:#fff7f3;
+      display:flex;
+      gap:18px;
+      flex-wrap:wrap;
+      align-items:center;
+      border-bottom:3px solid rgba(122,20,48,0.18);
+    }
+    .control-group{display:flex;align-items:center;gap:10px}
+    .control-group label{font-weight:800;color:var(--ink);font-size:14px}
+    select{
+      padding:10px 14px;
+      border:2px solid var(--line);
+      border-radius:10px;
+      font-size:14px;
+      background:#fff;
+      transition:.2s;
+      color:var(--ink);
+    }
+    select:hover{border-color: rgba(122,20,48,0.35);}
+    select:focus{
+      outline:none;
+      border-color: rgba(122,20,48,0.6);
+      box-shadow:0 0 0 3px rgba(122,20,48,0.12);
+    }
+    .btn{
+      padding:10px 16px;
+      background: linear-gradient(135deg, rgba(122,20,48,0.98), rgba(74,13,28,0.98));
+      color:#fff;
+      border:none;
+      border-radius:10px;
+      cursor:pointer;
+      font-weight:900;
+      font-size:14px;
+      transition:.2s;
+      box-shadow:0 8px 18px rgba(122,20,48,0.18);
+    }
+    .btn:hover{transform:translateY(-1px);filter:brightness(1.03);}
+
+    .stats{
+      padding:20px 30px;
+      display:grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap:18px;
+      background:#fff;
+      border-bottom:1px solid var(--line);
+    }
+    .stat-card{
+      background:
+        radial-gradient(700px 180px at 10% 0%, rgba(122,20,48,.10), transparent 60%),
+        radial-gradient(700px 180px at 90% 0%, rgba(251,191,36,.12), transparent 60%),
+        #fff;
+      border:1px solid var(--line);
+      border-radius:14px;
+      padding:20px;
+      text-align:center;
+      box-shadow:0 10px 24px rgba(15,23,42,0.06);
+    }
+    .stat-number{
+      font-size:42px;
+      font-weight:900;
+      line-height:1.05;
+      margin-bottom:6px;
+      color:var(--ink);
+    }
+    .stat-label{
+      font-size:15px;
+      color:var(--muted);
+      font-weight:800;
+    }
+
+    .calendar-grid{
+      padding:24px 30px 30px;
+      overflow-x:auto;
+      background:#fff;
+    }
+    table{width:100%;border-collapse:collapse;min-width:1400px;}
+
+    th{
+      background: var(--brand-a);
+      color:#fff;
+      padding:14px 10px;
+      text-align:center;
+      font-weight:900;
+      font-size:12px;
+      border:1px solid rgba(255,255,255,0.10);
+      position:sticky;
+      top:0;
+      z-index:10;
+    }
+    th.main-header{
+      background: var(--brand-b);
+      font-size:13px;
+    }
+
+    td{
+      padding:12px 10px;
+      text-align:center;
+      border:1px solid var(--line);
+      font-size:12px;
+      color:var(--ink) !important;
+    }
+
+    td.month{
+      background: var(--peach-4);
+      font-weight:900;
+      text-align:left;
+      padding-left:18px;
+      position:sticky;
+      left:0;
+      z-index:5;
+      border-right:4px solid rgba(122,20,48,0.35);
+    }
+
+    .cell-sujets{background: var(--peach-1);}
+    .cell-redac{background: var(--peach-2);}
+    .cell-bat{background: var(--peach-1);}
+    .cell-batfinal{background: var(--peach-2);}
+    .cell-envoi{background: var(--peach-3);}
+
+    .date-cell{transition:.2s;}
+    .date-cell:hover{
+      transform:scale(1.01);
+      box-shadow:0 2px 10px rgba(122,20,48,0.12);
+      background:#fff;
+    }
+
+    .status-badge{
+      display:inline-block;
+      padding:4px 10px;
+      border-radius:999px;
+      font-size:11px;
+      font-weight:900;
+      border:2px solid transparent;
+      white-space:nowrap;
+    }
+    .status-termine{ background: var(--okbg); border-color: var(--okbd); color: var(--ok); }
+    .status-encours{ background: var(--warnbg); border-color: var(--warnbd); color: var(--warn); animation:pulse-status 2s infinite; }
+    .status-avenir { background: var(--futurebg); border-color: var(--futurebd); color: var(--future); }
+
+    .days-remaining{font-size:11px;font-weight:900;color:var(--ink);}
+
+    .highlight-upcoming{ animation:pulse-row 2s infinite; }
+
+    @keyframes pulse-row{
+      0%,100%{background-color:transparent;}
+      50%{background-color:rgba(251,191,36,0.10);}
+    }
+    @keyframes pulse-status{
+      0%,100%{box-shadow:0 0 0 0 rgba(251,191,36,0.35);}
+      50%{box-shadow:0 0 0 10px rgba(251,191,36,0);}
+    }
+
+    .footer-notes{
+      padding: 14px 30px 22px;
+      background:#fff;
+      border-top:1px solid var(--line);
+      color:var(--ink);
+      font-size:13px;
+      line-height:1.7;
+    }
+    .footer-notes strong{font-weight:900;}
+
+    @media (max-width: 768px){
+      .vf-logo{height:56px;}
+      .header h1{font-size:22px;}
+      .controls{flex-direction:column;align-items:stretch;}
+      .control-group{flex-direction:column;align-items:stretch;}
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <div class="header">
+      <img class="vf-logo" src="VF_logo_linear_grey_RGB.png" alt="Vattenfall" />
+      <div class="header-text">
+        <h1>Calendrier Newsletters Internes 2026</h1>
+        <p>Planning annuel interactif de production et diffusion</p>
+      </div>
+    </div>
+
+    <div class="controls">
+      <div class="control-group">
+        <label>📅 Filtrer par mois:</label>
+        <select id="filterMonth">
+          <option value="tous">Tous les mois</option>
+          <option value="FÉVRIER">Février</option>
+          <option value="MAI">Mai</option>
+          <option value="AOÛT">Août</option>
+          <option value="NOVEMBRE">Novembre</option>
+        </select>
+      </div>
+
+      <div class="control-group">
+        <label>🎯 Filtrer par statut:</label>
+        <select id="filterStatus">
+          <option value="tous">Tous les statuts</option>
+          <option value="avenir">À venir</option>
+          <option value="encours">En cours</option>
+          <option value="termine">Terminé</option>
+        </select>
+      </div>
+
+      <button class="btn" onclick="resetFilters()">🔄 Réinitialiser</button>
+    </div>
+
+    <div class="stats">
+      <div class="stat-card">
+        <div class="stat-number" id="totalNewsletters">4</div>
+        <div class="stat-label">Newsletters 2026</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-number" id="nextDeadline">-</div>
+        <div class="stat-label">Prochaine échéance (Envoi)</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-number" id="daysUntil">-</div>
+        <div class="stat-label">Jours restants</div>
+      </div>
+    </div>
+
+    <div class="calendar-grid">
+      <table id="calendarTable">
+        <thead>
+          <tr>
+            <th class="main-header">Newsletter</th>
+            <th class="main-header">Statut</th>
+            <th class="main-header">Jours restants</th>
+            <th>Communication → Personnel</th>
+            <th>Communication</th>
+            <th>Communication → B2C</th>
+            <th>Communication → PDG</th>
+            <th>Communication → Personnel</th>
+          </tr>
+          <tr>
+            <th></th><th></th><th></th>
+            <th>Récolte des sujets<br><span style="font-weight:700">Date butoire</span></th>
+            <th>Rédaction<br><span style="font-weight:700">Date butoire</span></th>
+            <th>BAT<br><span style="font-weight:700">Date butoire</span></th>
+            <th>BAT final<br><span style="font-weight:700">Date butoire</span></th>
+            <th>Envoi newsletter</th>
+          </tr>
+        </thead>
+        <tbody id="calendarBody"></tbody>
+      </table>
+    </div>
+
+    <div class="footer-notes">
+      <div><strong>B2C :</strong> Christophe</div>
+      <div><strong>PDG :</strong> Henri</div>
+      <div><strong>Communication :</strong> Geoffrey &amp; Matthieu</div>
+      <div><strong>Personnel :</strong> Tous les internes</div>
+    </div>
+  </div>
+
+  <script>
+    const newsletters = [
+      { month:"FÉVRIER",  dates:["6 février 2026","10 février 2026","10 février 2026","11 février 2026","16 février 2026"], finalDate:"2026-02-16" },
+      { month:"MAI",      dates:["7 mai 2026","12 mai 2026","12 mai 2026","13 mai 2026","18 mai 2026"],               finalDate:"2026-05-18" },
+      { month:"AOÛT",     dates:["7 août 2026","11 août 2026","11 août 2026","12 août 2026","17 août 2026"],          finalDate:"2026-08-17" },
+      { month:"NOVEMBRE", dates:["6 novembre 2026","10 novembre 2026","10 novembre 2026","12 novembre 2026","16 novembre 2026"], finalDate:"2026-11-16" }
+    ];
+
+    function startOfToday(){ const t=new Date(); t.setHours(0,0,0,0); return t; }
+    function calculateDaysRemaining(d){ return Math.ceil((new Date(d)-startOfToday())/86400000); }
+    function calculateStatus(d){
+      const diff = calculateDaysRemaining(d);
+      if (diff < 0) return "termine";
+      if (diff <= 7) return "encours";
+      return "avenir";
+    }
+    function getStatusBadge(status){
+      const map = {
+        termine:'<span class="status-badge status-termine">✓ Terminé</span>',
+        encours:'<span class="status-badge status-encours">⚡ En cours</span>',
+        avenir:'<span class="status-badge status-avenir">📅 À venir</span>'
+      };
+      return map[status] || "";
+    }
+
+    function renderCalendar(){
+      const tbody = document.getElementById("calendarBody");
+      tbody.innerHTML = "";
+
+      newsletters.forEach(item=>{
+        const status = calculateStatus(item.finalDate);
+        const days = calculateDaysRemaining(item.finalDate);
+        const daysText = (days < 0) ? "Passé" : `J-${days}`;
+
+        const tr = document.createElement("tr");
+        tr.dataset.month = item.month;
+        tr.dataset.status = status;
+
+        tr.innerHTML = `
+          <td class="month">${item.month}</td>
+          <td>${getStatusBadge(status)}</td>
+          <td class="days-remaining"><strong>${daysText}</strong></td>
+
+          <td class="date-cell cell-sujets">${item.dates[0]}</td>
+          <td class="date-cell cell-redac">${item.dates[1]}</td>
+          <td class="date-cell cell-bat">${item.dates[2]}</td>
+          <td class="date-cell cell-batfinal">${item.dates[3]}</td>
+          <td class="date-cell cell-envoi"><strong>${item.dates[4]}</strong></td>
+        `;
+
+        if (status === "encours") tr.classList.add("highlight-upcoming");
+        tbody.appendChild(tr);
+      });
+
+      updateStats();
+    }
+
+    function updateStats(){
+      document.getElementById("totalNewsletters").textContent = String(newsletters.length);
+
+      const today = startOfToday();
+      const upcoming = newsletters
+        .filter(n => (new Date(n.finalDate) - today) >= 0)
+        .sort((a,b) => new Date(a.finalDate) - new Date(b.finalDate));
+
+      if (upcoming.length){
+        const next = upcoming[0];
+        const days = Math.max(calculateDaysRemaining(next.finalDate), 0);
+        document.getElementById("nextDeadline").textContent = next.dates[4];
+        document.getElementById("daysUntil").textContent = String(days);
+      } else {
+        document.getElementById("nextDeadline").textContent = "-";
+        document.getElementById("daysUntil").textContent = "-";
+      }
+    }
+
+    function applyFilters(){
+      const monthFilter = document.getElementById("filterMonth").value;
+      const statusFilter = document.getElementById("filterStatus").value;
+
+      document.querySelectorAll("#calendarBody tr").forEach(row=>{
+        const month = row.dataset.month;
+        const status = row.dataset.status;
+
+        const okMonth = monthFilter === "tous" || month === monthFilter;
+        const okStatus = statusFilter === "tous" || status === statusFilter;
+
+        row.style.display = (okMonth && okStatus) ? "" : "none";
+      });
+    }
+
+    function resetFilters(){
+      document.getElementById("filterMonth").value = "tous";
+      document.getElementById("filterStatus").value = "tous";
+      applyFilters();
+    }
+
+    document.getElementById("filterMonth").addEventListener("change", applyFilters);
+    document.getElementById("filterStatus").addEventListener("change", applyFilters);
+
+    renderCalendar();
+  </script>
+</body>
+</html>
